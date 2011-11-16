@@ -1,0 +1,10 @@
+<% if @expenditure.save %>
+	$(document).trigger('close.facebox');
+	$("#<%= @target %>totalBox").html("<%= escape_javascript(render(:partial => 'total' , :locals => { :total => @total })).html_safe %>");
+	$("#<%= @target %>expenditureAll").html("<%= escape_javascript(render(:partial => 'expenditures', :locals => { :id => @target, :data => @expenditures , :total => @total })).html_safe %>");
+
+<% else %>
+	$.facebox('<%= escape_javascript(render :template => 'expenditures/edit.html') %>')
+  $('#facebox form').data('remote','true');
+  $('#facebox .content p:last').remove();
+<% end %>

@@ -1,0 +1,13 @@
+<span style='float:left;margin-left:2px;'>
+	TOTAL:
+</span>
+<% if ( total < 0 ) %>  
+		<span id='totalexp' class='totalexp' style='color:red;'>
+			<%= total %>
+		</span>
+	<% else %>  
+		<span id='totalexp' class='totalexp' style='color:green;'>
+			<%= total %>
+		</span>
+	<% end %>
+</span>

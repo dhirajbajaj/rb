@@ -1,0 +1,29 @@
+<div class="expblock" id=<%= expenditure.id %>>
+	<div class="exp_options">
+		
+	</div>
+	<div class="exp_img">
+	</div>
+	<% if ( expenditure.amount < 0 ) %>  
+		<div class="exp_amount" style='color:red;'>
+			<%= expenditure.amount %>
+		</div>
+	<% else %>  
+		<div class="exp_amount" style='color:green;'>
+			<%= expenditure.amount %>
+		</div>
+	<% end %> 
+	<div class="exp_desc">
+		<%= expenditure.desc %>
+	</div>
+	<div class="exp_date">
+		<%= expenditure.date %>
+	</div>
+	<div class="exp_date">
+		<%= render :partial => 'category', :collection => expenditure.category %>
+	</div>
+	<div style='float:right;margin-right:20px;line-height:22px;'>
+			<%= link_to image_tag("edit.png",:size => "12x12", :title => "edit expenditure"), {:action => "edit", :id => expenditure.id }, :remote=>true , :class=>'edit_post'%>
+		<%= link_to image_tag("icon_close_remove.png",:size => "12x12", :title => "delete expenditure"),   {:action => "destroy", :id => expenditure.id ,:spender_id => id}, :confirm => 'Are you sure?', :remote=>true , :method => :delete ,:class=>'delete_post'%></td>
+	</div>
+</div>

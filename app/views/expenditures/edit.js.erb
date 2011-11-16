@@ -1,0 +1,15 @@
+if($("#actionData").css('display')=='block'){
+	$("#actionData").css('display','none');
+	$("#actionData").html("");
+}
+$.facebox('<%= escape_javascript(render :template => 'expenditures/edit.html') %>')
+$('#facebox form').data('remote','true');
+$('#facebox .content p:last').remove();
+$('#expenditure_cat_tokens').tokenInput('/category.json', { 
+	crossDomain: false,
+	hintText: 'press # and select a category  e.g. #food,#fuel...',
+	prePopulate: $(this).data('pre'),
+	theme: 'facebook'
+});
+
+$("input.date_picker").datepicker( {dateFormat:'M d, yy'});

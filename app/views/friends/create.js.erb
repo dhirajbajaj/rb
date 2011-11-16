@@ -1,0 +1,8 @@
+<% if @friend.save %>
+	$(document).trigger('close.facebox')
+	$("#friendBox").html("<%= escape_javascript(render(:partial => @friends)).html_safe %>");
+<% else %>
+	$.facebox('<%= escape_javascript(render :template => 'friends/new.html') %>');
+	$('#facebox form').data('remote','true');
+	$('#facebox .content p:last').remove();
+<% end %>

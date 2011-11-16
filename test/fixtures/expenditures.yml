@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  amount: 
+  desc: MyString
+  date: 2011-07-30
+  type: 
+
+two:
+  amount: 
+  desc: MyString
+  date: 2011-07-30
+  type: 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "hisaab-kitaab" %></title>
+    <%= stylesheet_link_tag "application", "token-input-facebook" ,"facebox","http://getbarometer.s3.amazonaws.com/assets/barometer/css/barometer.css" %>
+    <%= javascript_include_tag :defaults , "jquery.tokeninput","facebox","jquery-ui.js","http://feedbacker.bakarbox.com/en_US/all.js" %>
+    <%= csrf_meta_tag %>
+	<script type='text/javascript'>
+	   FEEDBACKER.init('51dbQI4UD');
+	</script>
+    <%= yield(:head) %>
+  </head>
+  <body>
+  <div class='outer'>
+	<div id="header" class='header'>
+		<div class="logo" style='float:left;'>
+			<div style='float:left;margin-top:10px;'>
+				 
+				<%= link_to "hisaab-kitaab", root_path %>  
+			</div>
+			<div class='user' style='line-height:10px;float:left;'>
+			my spendings reminders <b>&#946;</b>
+			</div>
+		</div>
+		<div id="user_nav" class='user'>
+			<% if user_signed_in? %>  
+				Signed in as 
+				<% if ( current_user.thumb? && session[:currauth] == 'twitter') %>  
+					<%= image_tag current_user.thumb, :size => "32x32"  %>
+				<% elsif current_user.fbthumb? %>  
+					<%= image_tag current_user.fbthumb, :size => "32x32"  %>
+				<% else %>
+					<%= link_to image_tag("def3.jpg",:size => "32x32") , authentications_path %>
+				<% end %> 
+				<%= current_user.name || current_user.email %>. Not you?  
+				<%= link_to "Sign out", destroy_user_session_path , :method => :delete %>  
+			  <% else %>  
+				<%= link_to "Sign up", new_user_registration_path %> or  
+				<%= link_to "Sign in", new_user_session_path %>  
+			  <% end %> 
+		</div>
+    </div>
+
+    <div id="container">
+      <% if user_signed_in? %>
+		<div id='userNav'>
+			<div class='user' style='width:95%;'>
+				<% if ( current_user.thumb? && session[:currauth] == 'twitter') %>  
+					<%= image_tag current_user.thumb, :size => "62x62"  %>
+				<% elsif current_user.fbthumb? %>
+					<%= image_tag current_user.fbthumb, :size => "62x62"  %>
+				<% else %>
+					<%= link_to image_tag("def3.jpg",:size => "62x62") , authentications_path %>
+				<% end %>
+				<%= current_user.name || current_user.email %>  
+			</div>
+			<div style='margin-top: 80px;'>
+				<ul>
+					<li class='sideNavItem'>
+					<%= link_to 'Dashboard', expenditures_path%>
+					</li>
+					<li class='sideNavItem'>
+					<%= link_to 'Friends', friends_path %>
+					</li>
+					<li class='sideNavItem'>
+					<%= link_to 'Reminders', expenditures_path %>
+					</li>
+					<li class='sideNavItem'>
+					<%= link_to 'Summary', expenditures_path %>
+					</li>
+				</ul>
+			</div>
+		</div>
+	  <% end %>
+	<div id="containerL">
+		<% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+      <% end %>
+      
+		<%= yield %>
+    </div>
+    </div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+<div>
+<p><strong>Sign in if you have already registered:</strong></p>
+
+<%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="inputs">
+    <%= f.input :email, :required => false, :autofocus => true %>
+    <%= f.input :password, :required => false %>
+    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Sign in" %>
+  </div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
+
+</div>
+<div style="float:left;width:1px; height: 200px;color:#F1F1F1; border: none; padding-top:80px ;font-size:24px;">
+-OR-
+</div>
+<br/>
+
+<div style="color:#EBEBEB; border: none; padding-top:80px ;font-size:24px;">
+<% if @authentications %>
+  <% unless @authentications.empty? %>
+    <p><strong>You can sign in to this account using:</strong></p>
+    <div class="authentications">
+      <% for authentication in @authentications %>
+        <div class="authentication">
+          <%= image_tag "#{authentication.provider}_32.png", :size => "32x32" %>
+          <div class="provider"><%= authentication.provider.titleize %></div>
+          <div class="uid"><%= authentication.uid %></div>
+          <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+        </div>
+      <% end %>
+      <div class="clear"></div>
+    </div>
+  <% end %>
+  <p><strong>Add another service to sign in with:</strong></p>
+<% else %>
+  <p><strong>Sign in through one of these services:</strong></p>
+<% end %>
+
+<a href="/auth/twitter" class="auth_provider">
+  <%= image_tag "twitter_64.png", :size => "64x64", :alt => "Twitter" %>
+  Twitter
+</a>
+<a href="/auth/facebook" class="auth_provider">
+  <%= image_tag "facebook_64.png", :size => "64x64", :alt => "Facebook" %>
+  Facebook
+</a>
+<a href="/auth/google_apps" class="auth_provider">
+  <%= image_tag "google_64.png", :size => "64x64", :alt => "Google" %>
+  Google
+</a>
+<a href="/auth/open_id" class="auth_provider">
+  <%= image_tag "openid_64.png", :size => "64x64", :alt => "OpenID" %>
+  OpenID
+</a>
+<a href="/auth/linked_in" class="auth_provider">
+  Linkedin
+</a>
+
+<div class="clear"></div>
+</div>

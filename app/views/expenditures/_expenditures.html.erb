@@ -1,0 +1,45 @@
+	<div class="actionItems">
+			<span style='margin-left:65px;'>
+				Amount
+			</span>
+			<span style='margin-left:40px;'>
+				Description
+			</span>
+			<span style='margin-left:115px;'>
+				Date
+			</span>
+			<span style='margin-left:55px;'>
+				Category
+			</span>
+			<span style='margin-left:20px;'>
+			</span>
+	</div>
+<% if data.length!=0 %>
+	<div id='<%= id %>expTable'>
+		<%= render :partial => data , :locals => { :id => id }%>
+	</div>
+	<div class="actionItems">
+		<div id="<%= id %>totalBox">
+			<%= render :partial => 'total' , :locals => { :total => total }%>	
+		</div>
+	</div>
+	<% else %>
+	<div class='expblock' style='color:#9D9D9D;'>
+		 <span style='margin-left:65px;'>
+				 xxx 
+			</span>
+			<span style='margin-left:40px;'>
+				expense description here
+			</span>
+			<span style='margin-left:50px;'>
+				on dd/mm/yy
+			</span>
+			<span style='margin-left:30px;'>
+				#category
+			</span>
+			<span style='margin-left:20px;'>
+			</span>
+	</div>
+	<div class="actionItems">
+	</div>
+<% end %>

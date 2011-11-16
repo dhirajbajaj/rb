@@ -1,0 +1,18 @@
+<%= simple_form_for(@expenditure) do |f| %>
+		<div id="form">
+		<div class="alignLayout">
+		<%= f.input :amount, :placeholder => "100, 300, 499" ,:input_html => { :maxlength => 15 ,:class => 'textInputs',:style => 'width:70px;'} %>
+		<%= f.input :date, :as => :date_picker ,:placeholder => "date of expenditure",:input_html => { :maxlength => 55 ,:class => 'textInputs',:style => 'width:100px;'}%>
+		<%= f.input :desc, :placeholder => "beer at hops, food from dhaba" ,:input_html => { :maxlength => 55 ,:class => 'textInputs',:style => 'width:300px;'}%>
+		<%= f.input :cat_tokens, :label => "Category" , :input_html => { :class => 'textInputs' ,:style => 'float:left;width:120px;' , "data-pre"  => @expenditure.category.collect{|author| {:id => author.id, :name => author.cat_name}}.to_json } %>
+		<div class='borderLayout'>
+			<div class='inputs' style="float:left;color: #555555;display: block;font-weight: 700;margin-top: 8px">
+				<input type="checkbox" name="friends" value="friends" />Friends
+			</div>
+			<%= f.input :dir, :label => "to/from" , :input_html => { :class => 'textInputs' ,:style => 'width:100px;'}, :collection => [[ "took from",0] , ["gave to",1] ], :prompt => "-NA-" %>
+			<%= f.input :spender_name, :label => "Spender" , :input_html => { :class => 'textInputs' ,:style => 'width:120px;'},  :collection => @friends.collect{|q|[q.name,q.id]} , :prompt => "-NA-" %>
+			<%= f.button :submit, "" , :class => 'inputButton'%>
+		</div>
+	</div>
+	</div>
+<% end %>

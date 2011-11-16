@@ -1,0 +1,58 @@
+
+user---------->expenditures //user_id
+user------------->friend
+user.friend---------->expenditure
+//has and belongs to => expenditure<------>Categories
+
+User.reminders //expenditure_id
+
+has_many => :expenditures
+has_many => :friends 
+
+expenditures
+belong_to :user
+
+friends
+belong_to :user
+has_many :expenditures
+
+--user
+#user_id
+user_name
+user_password
+user_email
+total_balance to be updated with
+
+--hisaab
+id
+#user_id //always
+amount // required  will be +/- signed
+desc of kharcha // required will have category using ajax
+date of kharcha //required friendly format 
+state: P/C
+friend_names //if there//can be null , autocomplete field
+
+--category:category for items must be there
+add category
+#food #fuel #movie #phone #shopping
+
+--friends
+name
+thumb // if any
+email
+
+
+Summary:
+each category division
+each friend division
+include me in this check
+
+
+My expenses:
+50 momos
+friends expenses:
+50 momos to sahil
+
+amount 100
+
+

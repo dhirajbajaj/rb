@@ -1,0 +1,4 @@
+$("#<%= @target %>totalBox").html("<%= escape_javascript(render(:partial => 'total' , :locals => { :total => @total })).html_safe %>");
+<% if @expenditures.length == 0 %>
+$("#<%= @target %>expenditureAll").html("<%= escape_javascript(render(:partial => 'expenditures', :locals => { :id => @target, :data => @expenditures , :total => @total })).html_safe %>");
+<% end %>

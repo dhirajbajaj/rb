@@ -1,0 +1,13 @@
+$("#actionData").html("<%= escape_javascript(render :template => 'expenditures/new.html') %>");
+$("#actionData").css('display','block');
+$('#actionData form').data('remote','true');
+
+//$.facebox('<%= escape_javascript(render :template => 'expenditures/new.html') %>')
+//$('#facebox form').data('remote','true');
+//$('#facebox .content p:last').remove();
+$('#expenditure_cat_tokens').tokenInput('/category.json', { 
+	crossDomain: false,
+	hintText: 'Select a expense Category  e.g. #food,#fuel...',
+	theme: 'facebook'
+});
+$("input.date_picker").datepicker( {dateFormat:'M d, yy'});

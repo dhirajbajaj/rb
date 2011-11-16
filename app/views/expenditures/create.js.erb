@@ -1,0 +1,22 @@
+<% if @expenditure.save %>
+	$("#actionData").html("");
+  //$(document).trigger('close.facebox')
+	$("#<%= @target %>totalBox").html("<%= escape_javascript(render(:partial => 'total' , :locals => { :total => @total })).html_safe %>");
+	<% if @expenditures.length != 1 %>
+		if($("#<%= @target %>expTable").find('div.expblock').length != 0){
+			$("#<%= @target %>expTable").find('div.expblock').first().before('<%= escape_javascript(render( :partial =>  @expenditure , :locals => { :id =>  @target })).html_safe %>');
+		}
+		else{
+			$("#<%= @target %>expTable").append('<%= escape_javascript(render( :partial =>  @expenditure , :locals => { :id =>  @target })).html_safe %>');
+		}
+	<% else %>
+	<% end %>
+	$("#<%= @target %>expenditureAll").html("<%= escape_javascript(render(:partial => 'expenditures', :locals => { :id => @target, :data => @expenditures , :total => @total })).html_safe %>");
+<% else %>
+	$("#actionData").html("<%= escape_javascript(render :template => 'expenditures/new.html') %>");
+	$("#actionData").css('display','block');
+	$('#actionData form').data('remote','true');
+	//$.facebox('<%= escape_javascript(render :template => 'expenditures/new.html') %>')
+	//$('#facebox form').data('remote','true');
+	//$('#facebox .content p:last').remove();
+<% end %>

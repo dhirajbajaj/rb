@@ -1,0 +1,12 @@
+<div class="authentication" style='border-top: 1px solid #BBC6D8;border-bottom: 1px solid #BBC6D8;width:98%;background: #FAFAFA repeat-x scroll 0 0;'>
+			<%= image_tag("def3.jpg",:size => "32x32") %>
+			<div class="provider">
+				<%= friend.name %> 
+			</div>
+          <div class="uid">
+				<%= friend.email %>
+		  </div>
+          <%= link_to "C", friend, :title =>'see friend details' , :class => "remove" %>
+          <%= link_to "X", friend, :title =>'delete friend' ,:confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove" %>
+</div>
+<br/>

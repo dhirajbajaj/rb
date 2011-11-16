@@ -1,0 +1,14 @@
+<div class='expenditureBlock'>
+		<div class="expblockHead">
+			<div class='logo'>
+				<div class='user' style='margin:1px;float:left;'>
+					<%= image_tag("arrow.png") %>
+				</div>
+					<%= title %>
+			</div>
+		</div>
+			
+		<div id='<%= id %>expenditureAll'>
+			<%= render :partial => 'expenditures', :locals => { :id => id ,:data => dataObj , :total => totalVal } %>
+		</div>
+</div>

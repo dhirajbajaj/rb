@@ -1,0 +1,59 @@
+<div class="actionBox">
+				<%= link_to image_tag("add1.jpg",:size => "15x15",:title => "Add new Expenditure") + ' New Expense', {:action => "new" } , :remote => true %>
+				<%= link_to image_tag("add_green_button.png",:size => "15x15",:title => "add friend") + " Add Friend" , { :action => "new", :controller=>"friends"}, :remote=>true %>
+				<%= link_to image_tag("arrow.png",:size => "15x15",:title => "view notifications") + " Notifications(5)" , { :action => "new", :controller=>"friends"}, :remote=>true %>
+<div id='actionData'>
+
+</div>
+</div>
+<%= render :partial => 'expenditureBlock' , :locals => { :id => 'me', :title => "My Expense' Summary" , :totalVal => @total, :dataObj => @expenditures} %>
+<% if @friends %>
+	<% for friend in @friends %>
+		<br/>
+		<%= render :partial => 'expenditureBlock' , :locals => { :id =>  friend.id , :title => friend.name , :totalVal => friend.expenditure.sum('amount') , :dataObj => friend.expenditure.order("date DESC")} %>
+	<% end %>
+<% end %>
+
+<div id="containerR">
+
+		<div class='blocks'>
+			<% if @friends.length!=0 %>
+				<div class='user' style='width:100%;font-size:17px;line-height:17px;float:left;'>
+				Friends
+				</div>
+			<div id='friendBox'>
+				<%= render :partial => @friends %>
+			</div>
+			&nbsp;
+			<% else %>
+				
+			<div class='user' style='line-height:17px;float:left;'>
+				You have not added any friends yet!!!
+				add friend with whom you share your expenses in daily needs 
+				using below links
+				<hr/>
+			</div>
+			<% end %>
+			<div class="actionBox">
+				<%= link_to image_tag("add1.jpg",:size => "15x15",:title => "add friend") + "add friend" , { :action => "new", :controller=>"friends"}, :remote=>true %>
+			</div>
+		</div>
+	<div class="blocks user" style='display:none;'>
+		<strong>TODO for </strong>
+		alt:<a href='http://bit.ly/rczXEQ'>http://bit.ly/rczXEQ</a>
+		<hr/>
+		<ul>
+		<li>DONE:total expenditure to be update with delete, add, update</li>
+		<li>DONE:#category #food #fuel #movie #phone #shopping  </li>
+		<li>DONE:multiple login</li>
+		<li>DONE:@friend model</li>
+		<li>@friend list import from fb tw.</li>
+		<li>summary for @friend</li>
+		<li>summary for #category</li>
+		<li>send/share details to friends // advanced</li>
+		<li>custom #category recurring monthly/daily/weekly</li>
+		<li>group by month, pagination, data sorting  filtering criteria's</li>
+		</ul>
+		<%= link_to "Add Friends" , { :action => "new", :controller=>"friends"}, :remote=>true %>
+	</div>
+</div>
